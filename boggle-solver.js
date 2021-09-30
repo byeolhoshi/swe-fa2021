@@ -1,4 +1,7 @@
 //Nyhriel Smith, @02915670
+
+const { WSASERVICE_NOT_FOUND } = require("constants");
+
 // Legland Burge, Source[code basis]
 exports.findAllSolutions = function(grid, dic) {
   let solutions = [];
@@ -72,7 +75,17 @@ exports.findAllSolutions = function(grid, dic) {
       
       if (isWord(found, hash)){
         if (found.length >= 3){
-          solutionSet.add(found);
+          for (let i = 0; i < found.length; i++ ){
+            if (i != (found.length-1)){
+              continue;
+            }
+            else if(found[i] =='q' || found[i-1]=='q'){
+              break;
+            }
+            else{
+              solutionSet.add(found);
+            }
+          }
         }
       }
       
@@ -120,10 +133,9 @@ var grid = [['T', 'W', 'Y', 'R'],
               ['E', 'N', 'P', 'H'],
               ['G', 'Z', 'Qu', 'R'],
               ['O', 'N', 'T', 'A']];
-
 var dic = ['art', 'ego', 'gent', 'get', 'net', 'new', 'newt', 'prat',
                     'pry', 'qua', 'quart', 'quartz', 'rat', 'tar', 'tarp',
-                    'ten', 'went', 'wet', 'arty', 'egg', 'not', 'quar'];
+                    'ten', 'went', 'wet', 'arty', 'egg', 'not', 'quar', 'ra'];
 
 console.log("Solutions: \n");
 

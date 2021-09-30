@@ -1,7 +1,4 @@
 //Nyhriel Smith, @02915670
-
-const { WSASERVICE_NOT_FOUND } = require("constants");
-
 // Legland Burge, Source[code basis]
 exports.findAllSolutions = function(grid, dic) {
   let solutions = [];

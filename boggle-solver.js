@@ -1,5 +1,7 @@
 //Nyhriel Smith, @02915670
-// Legland Burge, Source[code basis]
+// geekforgeeks.com trie javascript input
+// Dion Simmons
+
 exports.findAllSolutions = function(grid, dic) {
   let solutions = [];
 
@@ -32,7 +34,8 @@ exports.findAllSolutions = function(grid, dic) {
   solutions = Array.from(solutionSet);
   
   return solutions;
-    function isValid(grid){
+
+  function isValid(grid){
     guide = /(st|qu) | [a-prt-z]/;
     for (let i=0; i < grid.length; i++){
       for (let j=0; j<grid[i].length; j++){
@@ -60,7 +63,10 @@ exports.findAllSolutions = function(grid, dic) {
   
   function gridSearch(found, y, x, grid, visited, hash, solutionSet){
     let adjacents = [[-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1, -1], [0, -1]];
-    
+
+		if(found == "s" || found == "q"){
+			return;
+    }
     if (y<0 || x<0 || y>=grid.length || x>=grid.length || visited[y][x] == true){
       return;
     }
@@ -72,7 +78,14 @@ exports.findAllSolutions = function(grid, dic) {
       
       if (isWord(found, hash)){
         if (found.length >= 3){
-          solutionSet.add(found);
+          for (let i = 0; i < found.length; i++ ){
+            if (i != (found.length-1)){
+              continue;
+            }
+            else{
+              solutionSet.add(found);
+            }
+          }
         }
       }
       
@@ -120,10 +133,9 @@ var grid = [['T', 'W', 'Y', 'R'],
               ['E', 'N', 'P', 'H'],
               ['G', 'Z', 'Qu', 'R'],
               ['O', 'N', 'T', 'A']];
-
 var dic = ['art', 'ego', 'gent', 'get', 'net', 'new', 'newt', 'prat',
                     'pry', 'qua', 'quart', 'quartz', 'rat', 'tar', 'tarp',
-                    'ten', 'went', 'wet', 'arty', 'egg', 'not', 'quar'];
+                    'ten', 'went', 'wet', 'arty', 'egg', 'not', 'quar', 'ra', 'aqu'];
 
 console.log("Solutions: \n");
 
